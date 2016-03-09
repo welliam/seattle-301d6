@@ -24,13 +24,7 @@
 /* DONE: Add styles so the filters lay out better on desktop. */
 
 @media only screen and (min-width: 640px) {
-  .main-nav ul {
-    display: block;
-  }
 
-  .icon-menu {
-    display: none;
-  }
 
   .heading-group-h1 {
     padding: .1em .1em .1em 2em;
@@ -47,4 +41,3 @@
     display: inline;
   }
 }
-
