@@ -11,8 +11,20 @@
 
     return template(article);
   };
-
-  // COMMENT: What does this method do?  What is it's execution path?
+  // DONE: What does this method do?  What is it's execution path?  At
+  // a high leve, this method is designed to populate the filters. It
+  // kicks this process off by defining the handlebars template as
+  // well as the options. We're mapping through all of the articles
+  // and setting the options value equal to the array of filled in
+  // templates based on the unique authors, prior to appending these
+  // to the DOM. The unique authors are retrieved using the allAuthors
+  // method of the Article object.
+  // From there we leverage the article.allCategories method, which
+  // utilizes the webDB.execute method to select all the unique
+  // categories from articles table, prior to running the callback
+  // with that information.
+  // The callback checks to confirm that the #category-filter exists,
+  // prior to appending the array of distinct category templates.
   articleView.populateFilters = function() {
     var options,
       template = Handlebars.compile($('#option-template').text());
@@ -37,7 +49,14 @@
     });
   };
 
-  // COMMENT: What does this method do?  What is it's execution path?
+  // DONE: What does this method do?  What is it's execution path?
+  // The articleView.handleFilters method sets up the #filters list's
+  // on change event using jQuey's one method. When this event gets
+  // fired, we set resource equal to the id of the filter that was
+  // changed, with -filter removed. Lastly, we call page on the given
+  // resource, and make some minor string modifications (e.g. if the
+  // author filter were changed to "jill smith", the result would be
+  // "/author/jill+smith).
   articleView.handleFilters = function() {
     $('#filters').one('change', 'select', function() {
       resource = this.id.replace('-filter', '');
