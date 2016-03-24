@@ -136,7 +136,8 @@
     $('#article-json').val(JSON.stringify(article) + ',');
   };
 
-  // COMMENT: What does this method do?  What is it's execution path?
+  // DONE: What does this method do?  What is it's execution path?
+  // We show the articles section and hide all of its siblings. Then we remove all of the article tags from the articles section. After this, for each article that has been passed in, we append to the articles section the result of render being applied to that article. Render fills in the artice-tempate with how many days have passed since the article was published, whether it has been published and the syntax highlighted body. We then call polulateFilters followed by calling handleFilters. Lastly, if there is more than one article on the DOM we then set the teasers for the remaining article bodies.
   articleView.index = function(articles) {
     $('#articles').show().siblings().hide();
 
@@ -146,7 +147,8 @@
     });
 
     articleView.populateFilters();
-    // COMMENT: What does this method do?  What is it's execution path?
+    // DONE: What does this method do?  What is it's execution path?
+    // As previously described, the articleView.handleFilters method sets up the #filters list's on change event using jQuey's one method.
     articleView.handleFilters();
 
     // DONE: Replace setTeasers with just the truncation logic, if needed:
