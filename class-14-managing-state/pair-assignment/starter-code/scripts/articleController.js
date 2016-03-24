@@ -24,7 +24,7 @@
     Article.findWhere('id', ctx.params.id, articleData);
   };
 
-  // COMMENT: What does this method do?  What is it's execution path?
+  // DONE: What does this method do?  What is it's execution path?
   // This method loads the articles based on the author's name. It
   // proceeds with the article findWhere as in the above example, but
   // with here we also replaces +s with spaces in the authorName URL
@@ -38,7 +38,8 @@
     Article.findWhere('author', ctx.params.authorName.replace('+', ' '), authorData);
   };
 
-  // COMMENT: What does this method do?  What is it's execution path?
+  // DONE: What does this method do?  What is it's execution path?
+  // This method loads the articles from the DB which match the category name given in the user's URL. After retrieving those articles, it sets the context's articles field to those found articles before calling next.
   articlesController.loadByCategory = function(ctx, next) {
     var categoryData = function(articlesInCategory) {
       ctx.articles = articlesInCategory;
@@ -48,7 +49,8 @@
     Article.findWhere('category', ctx.params.categoryName, categoryData);
   };
 
-  // COMMENT: What does this method do?  What is it's execution path?
+  // DONE: What does this method do?  What is it's execution path?
+  // This method loads all of the articles into the artice.all array. It then sets the context's article field equal to article.all, before calling next(). It retrieves the articles by first checking if they have been loaded into article.all. If they have been, it does not fetch them from the DB before calling next. Otherwise, it loads them from the DB using Article.fetchAll.
   articlesController.loadAll = function(ctx, next) {
     var articleData = function(allArticles) {
       ctx.articles = Article.all;
